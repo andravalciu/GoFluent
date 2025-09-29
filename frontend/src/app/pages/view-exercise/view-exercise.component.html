@@ -1,0 +1,17 @@
+<div *ngIf="exercise" class="exercise-view">
+  <h2>Exercițiu</h2>
+  <p><strong>Întrebare:</strong> {{ exercise.question }}</p>
+
+  <div *ngIf="role === 'ADMIN'">
+    <p><strong>Răspuns corect:</strong> {{ exercise.answer }}</p>
+
+    <div class="exercise-actions">
+      <button (click)="editExercise()">✏️ Modifică</button>
+      <button (click)="deleteExercise()">🗑️ Șterge</button>
+    </div>
+  </div>
+
+  <div *ngIf="role === 'USER'">
+    <button (click)="solveExercise()">📝 Rezolvă exercițiul</button>
+  </div>
+</div>

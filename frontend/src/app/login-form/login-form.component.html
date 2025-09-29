@@ -1,0 +1,27 @@
+<div class="tabs">
+  <button (click)="onLoginTab()" [class.active]="active === 'login'">Autentificare</button>
+  <button (click)="onRegisterTab()" [class.active]="active === 'register'">Înregistrare</button>
+</div>
+
+<div *ngIf="active === 'login'">
+  <h2>Autentificare</h2>
+  <form (ngSubmit)="onSubmitLogin()">
+    <input type="text" [(ngModel)]="login" name="login" placeholder="Nume de utilizator" required>
+    <input type="password" [(ngModel)]="password" name="password" placeholder="Parolă" required>
+    <button type="submit">Autentificare</button>
+  </form>
+</div>
+
+<div *ngIf="active === 'register'">
+  <h2>Înregistrare</h2>
+  <form (ngSubmit)="onSubmitRegister()">
+    <input type="text" [(ngModel)]="firstName" name="firstName" placeholder="Prenume" required>
+    <input type="text" [(ngModel)]="lastName" name="lastName" placeholder="Nume de familie" required>
+    <input type="text" [(ngModel)]="login" name="login" placeholder="Nume de utilizator" required>
+    <input type="password" [(ngModel)]="password" name="password" placeholder="Parolă" required>
+
+
+    <button type="submit">Înregistrare</button>
+  </form>
+</div>
+

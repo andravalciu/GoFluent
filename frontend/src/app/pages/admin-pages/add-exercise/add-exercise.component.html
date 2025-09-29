@@ -1,0 +1,36 @@
+<div class="container mt-4">
+  <h2>Adaugă Exercițiu</h2>
+
+  <form (ngSubmit)="onSubmit()" #form="ngForm">
+    <!-- Enunț -->
+    <div class="mb-3">
+      <label class="form-label">Enunț Exercițiu</label>
+      <textarea class="form-control"
+                rows="4"
+                [(ngModel)]="exercise.question"
+                name="statement"
+                required
+                #stmt="ngModel"></textarea>
+      <div *ngIf="stmt.invalid && stmt.touched" class="text-danger">
+        Enunțul este obligatoriu.
+      </div>
+    </div>
+
+    <!-- Răspuns -->
+    <div class="mb-3">
+      <label class="form-label">Răspuns Corect</label>
+      <input class="form-control"
+             [(ngModel)]="exercise.answer"
+             name="correctAnswer"
+             required
+             #answer="ngModel">
+      <div *ngIf="answer.invalid && answer.touched" class="text-danger">
+        Răspunsul este obligatoriu.
+      </div>
+    </div>
+
+    <!-- Butoane -->
+    <button type="submit" class="btn btn-success">Adaugă Exercițiu</button>
+    <button type="button" class="btn btn-secondary ms-2" (click)="goBack()">Anulează</button>
+  </form>
+</div>

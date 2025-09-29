@@ -1,0 +1,165 @@
+<div class="container mt-4">
+  <h2>Adaugă Lecție</h2>
+
+  <button routerLink="/manage-content" class="btn btn-outline-secondary me-2 mb-3">
+    <i class="bi bi-arrow-left"></i> Înapoi
+  </button>
+
+  <!-- Language Selection Section -->
+  <div class="language-selection mb-4 p-3 border rounded">
+    <h5>Selectează Limba</h5>
+
+    <div class="row">
+      <div class="col-md-8">
+        <select
+          class="form-select"
+          [(ngModel)]="selectedLanguageId"
+          (change)="onLanguageChange(selectedLanguageId)"
+          [disabled]="isLoading">
+          <option value="">-- Selectează Limba --</option>
+          <option *ngFor="let language of availableLanguages" [value]="language.id">
+            {{language.name}} ({{language.code}})
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div *ngIf="!selectedLanguageId" class="alert alert-warning mt-3">
+      <i class="bi bi-exclamation-triangle"></i>
+      Te rugăm să selectezi o limbă pentru a continua.
+    </div>
+  </div>
+
+  <!-- Loading Indicator -->
+  <div *ngIf="isLoading" class="text-center mb-3">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p>Se încarcă...</p>
+  </div>
+
+  <!-- Lesson Form -->
+  <div *ngIf="selectedLanguageId && !isLoading">
+
+    <div *ngIf="levels.length === 0" class="alert alert-warning mb-3">
+      <i class="bi bi-exclamation-triangle"></i>
+      Nu există nivele disponibile pentru această limbă. Te rugăm să creezi primul nivel.
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #lessonForm="ngForm" *ngIf="levels.length > 0">
+      <!-- Titlu -->
+      <div class="mb-3">
+        <label for="title" class="form-label">Titlu <span class="text-danger">*</span></label>
+        <input
+          type="text"
+          id="title"
+          class="form-control"
+          name="title"
+          [(ngModel)]="lesson.title"
+          required
+          placeholder="Introdu titlul lecției">
+      </div>
+
+      <!-- Descriere -->
+      <div class="mb-3">
+        <label for="description" class="form-label">Descriere <span class="text-danger">*</span></label>
+        <input
+          type="text"
+          id="description"
+          class="form-control"
+          name="description"
+          [(ngModel)]="lesson.description"
+          required
+          placeholder="Introdu o descriere scurtă">
+      </div>
+
+      <!-- Conținut -->
+      <div class="mb-3">
+        <label for="content" class="form-label">Conținut</label>
+        <textarea
+          id="content"
+          class="form-control"
+          name="content"
+          rows="8"
+          [(ngModel)]="lesson.content"
+          placeholder="Introdu conținutul complet al lecției..."></textarea>
+      </div>
+
+      <!-- Nivel -->
+      <div class="mb-3">
+        <label for="level" class="form-label">Nivel <span class="text-danger">*</span></label>
+        <select
+          id="level"
+          class="form-select"
+          name="levelId"
+          [(ngModel)]="lesson.levelId"
+          required>
+          <option value="">-- Selectează Nivelul --</option>
+          <option *ngFor="let level of levels" [value]="level.id">
+            {{ level.name }} - {{ level.description }}
+          </option>
+        </select>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-success btn-lg"
+        [disabled]="!lessonForm.form.valid || isLoading">
+        <i class="bi bi-check-circle"></i>
+        <span *ngIf="!isLoading">Salvează Lecția</span>
+        <span *ngIf="isLoading">Se salvează...</span>
+      </button>
+    </form>
+  </div>
+
+  <!-- Exercise Section -->
+  <div *ngIf="lessonId && !isLoading" class="mt-5 p-4 border rounded bg-light">
+    <h4 class="text-success">
+      <i class="bi bi-check-circle-fill"></i>
+      Lecția a fost creată cu succes!
+    </h4>
+
+    <h5 class="mt-4">Adaugă Exercițiu pentru Lecția Curentă</h5>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label class="form-label">Întrebare <span class="text-danger">*</span></label>
+          <textarea
+            class="form-control"
+            [(ngModel)]="exercise.question"
+            name="question"
+            rows="3"
+            placeholder="Introdu întrebarea exercițiului..."></textarea>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label class="form-label">Răspuns <span class="text-danger">*</span></label>
+          <textarea
+            class="form-control"
+            [(ngModel)]="exercise.answer"
+            name="answer"
+            rows="3"
+            placeholder="Introdu răspunsul corect..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <button
+      class="btn btn-success me-2"
+      (click)="addExercise()"
+      [disabled]="!exercise.question || !exercise.answer || isLoading">
+      <i class="bi bi-plus-circle"></i>
+      Adaugă Exercițiu
+    </button>
+
+    <button
+      class="btn btn-primary"
+      (click)="goBack()">
+      <i class="bi bi-list"></i>
+      Vezi Toate Lecțiile
+    </button>
+  </div>
+</div>
+

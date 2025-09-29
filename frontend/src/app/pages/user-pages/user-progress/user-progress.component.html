@@ -1,0 +1,36 @@
+<div class="progress-container">
+  <!-- Buton înapoi -->
+  <div class="mb-3">
+    <button class="btn-back" (click)="goBackToHome()">Înapoi</button>
+  </div>
+
+<h2>Progres utilizator</h2>
+
+<table class="progress-table" *ngIf="progressData.length > 0; else noData">
+  <thead>
+  <tr>
+    <th>Lecție</th>
+    <th>Exerciții terminate</th>
+    <th>Status lecție</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let prog of progressData">
+    <td>{{ prog.lesson.title }}</td>
+    <td>{{ prog.completedExercises }} / {{ prog.lesson.exercises.length }}</td>
+    <td>
+      <div style="background:#ddd; border-radius:10px; width:300px; height:20px;">
+        <div [style.width.%]="(prog.completedExercises / prog.lesson.exercises.length) * 100"
+             style="background:#4caf50; height:100%; border-radius:10px;">
+        </div>
+      </div>
+      <p>{{ prog.finishedLesson ? ' Completată' : ' În lucru' }}</p>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<ng-template #noData>
+  <p>Niciun progres înregistrat încă.</p>
+</ng-template>
+</div>

@@ -1,0 +1,31 @@
+<div class="container mt-4" *ngIf="exercise">
+
+  <div class="mb-3">
+    <button class="btn-back" (click)="goBackToLesson()">Înapoi la lecții</button>
+  </div>
+
+  <h3>{{ exercise.question }}</h3>
+  <p>{{ exercise.description }}</p>
+
+  <form (ngSubmit)="submitAnswer()">
+    <div class="mb-3">
+      <label class="form-label">Răspunsul tău</label>
+      <textarea class="form-control" [(ngModel)]="userAnswer" name="answer" rows="4" required [readonly]="submitted"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="submitted">Trimite</button>
+  </form>
+
+  <!-- Mesaj după trimitere -->
+  <div *ngIf="submitted" class="mt-3">
+    <div [ngClass]="isCorrect ? 'alert alert-success' : 'alert alert-danger'">
+      {{ isCorrect ? '✔️ Răspuns corect!' : '❌ Răspuns greșit. Răspunsul corect era: ' + exercise.answer }}
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between mt-4">
+    <button class="btn btn-secondary" (click)="goToPrevious()" [disabled]="exerciseIndex === 0">Înapoi</button>
+    <button class="btn btn-secondary" (click)="goToNext()" [disabled]="exerciseIndex >= exercises.length - 1">Următorul</button>
+  </div>
+</div>
+

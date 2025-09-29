@@ -1,0 +1,179 @@
+<div class="container mt-4">
+  <h2>Modifică Întrebare Grilă</h2>
+
+  <button routerLink="/manage-mcq" class="btn btn-outline-secondary me-2 mb-3">
+    <i class="bi bi-arrow-left"></i> Înapoi la Administrare MCQ
+  </button>
+
+  <!-- Language Selection Section (optional, if you want users to be able to change language) -->
+  <div class="language-selection mb-4 p-3 border rounded" *ngIf="availableLanguages.length > 1">
+    <h6>Limba Selectată</h6>
+    <select
+      class="form-select"
+      [(ngModel)]="selectedLanguageId"
+      (change)="onLanguageChange(selectedLanguageId)"
+      [disabled]="isLoading">
+      <option *ngFor="let language of availableLanguages" [value]="language.id">
+        {{language.name}} ({{language.code}})
+      </option>
+    </select>
+  </div>
+
+  <!-- Loading Indicator -->
+  <div *ngIf="isLoading" class="text-center mb-4">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p>Se încarcă datele...</p>
+  </div>
+
+  <!-- Edit Form -->
+  <div *ngIf="!isLoading">
+
+    <!-- Show error if no levels available -->
+    <div *ngIf="levels.length === 0" class="alert alert-warning mb-3">
+      <i class="bi bi-exclamation-triangle"></i>
+      Nu există nivele disponibile pentru această limbă. Te rugăm să creezi nivele înainte de a edita întrebarea.
+      <br>
+      <button class="btn btn-sm btn-primary mt-2" (click)="goBack()">
+        Înapoi la Administrare
+      </button>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #editMcqForm="ngForm" *ngIf="levels.length > 0">
+
+      <!-- MCQ ID Info -->
+      <div class="mb-3">
+        <small class="text-muted">ID Întrebare: {{mcqId}}</small>
+      </div>
+
+      <!-- Nivel -->
+      <div class="mb-4 p-3 bg-light rounded">
+        <label class="form-label fw-bold">Nivel <span class="text-danger">*</span></label>
+        <select
+          class="form-select"
+          [(ngModel)]="mcq.levelId"
+          name="levelId"
+          required
+          #levelRef="ngModel">
+          <option value="">-- Selectează Nivelul --</option>
+          <option *ngFor="let level of levels" [value]="level.id">
+            {{ level.name }} - {{ level.description }}
+          </option>
+        </select>
+        <div *ngIf="levelRef.invalid && levelRef.touched" class="text-danger mt-1">
+          <i class="bi bi-exclamation-circle"></i> Selectarea nivelului este obligatorie.
+        </div>
+        <div class="form-text">Selectează nivelul de dificultate pentru această întrebare</div>
+      </div>
+
+      <!-- Întrebare -->
+      <div class="mb-4">
+        <label class="form-label fw-bold">Întrebare <span class="text-danger">*</span></label>
+        <textarea
+          class="form-control"
+          [(ngModel)]="mcq.question"
+          name="question"
+          required
+          #q="ngModel"
+          rows="3"
+          placeholder="Introdu întrebarea aici..."></textarea>
+        <div *ngIf="q.invalid && q.touched" class="text-danger mt-1">
+          <i class="bi bi-exclamation-circle"></i> Întrebarea este obligatorie.
+        </div>
+      </div>
+
+      <!-- Opțiuni -->
+      <div class="mb-4">
+        <h5 class="fw-bold">Opțiuni de Răspuns</h5>
+        <div class="row">
+          <div class="col-md-6 mb-3" *ngFor="let option of mcq.options; let i = index; trackBy: trackByIndex">
+            <label class="form-label">Opțiunea {{ i + 1 }} <span class="text-danger">*</span></label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="mcq.options[i]"
+              [name]="'option' + i"
+              required
+              [ngModelOptions]="{ standalone: true }"
+              #opt="ngModel"
+              [placeholder]="'Introdu opțiunea ' + (i + 1)">
+            <div *ngIf="opt.invalid && opt.touched" class="text-danger mt-1">
+              <i class="bi bi-exclamation-circle"></i> Această opțiune este obligatorie.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Răspuns Corect -->
+      <div class="mb-4 p-3 bg-success bg-opacity-10 border border-success rounded">
+        <label class="form-label fw-bold text-success">Răspuns Corect <span class="text-danger">*</span></label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="mcq.correctAnswer"
+          name="correctAnswer"
+          required
+          #correct="ngModel"
+          placeholder="Scrie exact răspunsul corect (trebuie să corespundă uneia dintre opțiuni)">
+
+        <div *ngIf="correct.invalid && correct.touched" class="text-danger mt-1">
+          <i class="bi bi-exclamation-circle"></i> Răspunsul corect este obligatoriu.
+        </div>
+
+        <div *ngIf="!isAnswerValid && correct.touched" class="text-danger mt-1">
+          <i class="bi bi-exclamation-circle"></i> Răspunsul corect trebuie să corespundă exact uneia dintre opțiuni.
+        </div>
+
+        <div class="form-text mt-2">
+          <i class="bi bi-info-circle"></i>
+          <strong>Important:</strong> Răspunsul trebuie să fie identic cu una dintre opțiunile de mai sus (inclusiv spații și majuscule).
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="d-flex gap-2 mb-4">
+        <button
+          class="btn btn-success btn-lg"
+          type="submit"
+          [disabled]="!editMcqForm.form.valid || isLoading">
+          <i class="bi bi-check-circle"></i>
+          <span *ngIf="!isLoading">Salvează Modificările</span>
+          <span *ngIf="isLoading">Se salvează...</span>
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="goBack()"
+          [disabled]="isLoading">
+          <i class="bi bi-x-circle"></i>
+          Anulează
+        </button>
+      </div>
+
+      <!-- Preview -->
+      <div *ngIf="mcq.question && mcq.options[0]" class="mt-4 p-3 bg-info bg-opacity-10 border border-info rounded">
+        <h6 class="text-info fw-bold">
+          <i class="bi bi-eye"></i> Previzualizare Întrebare
+        </h6>
+        <div class="mb-2">
+          <strong>Întrebare:</strong> {{ mcq.question }}
+        </div>
+        <div class="mb-2">
+          <strong>Opțiuni:</strong>
+          <ul class="mb-0">
+            <li *ngFor="let option of mcq.options; let i = index" [class.text-success]="option === mcq.correctAnswer">
+              {{ option || '(necompletat)' }}
+              <span *ngIf="option === mcq.correctAnswer" class="badge bg-success ms-2">Răspuns Corect</span>
+            </li>
+          </ul>
+        </div>
+        <div *ngIf="mcq.levelId" class="mb-0">
+          <strong>Nivel:</strong>
+          {{ getLevelName(mcq.levelId) }}
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

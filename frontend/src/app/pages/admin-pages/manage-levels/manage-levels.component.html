@@ -1,0 +1,34 @@
+<div class="manage-levels">
+  <h2>Gestionare Niveluri</h2>
+
+  <button routerLink="/admin-home" class="btn btn-outline-secondary mb-3">
+    <i class="bi bi-arrow-left"></i> Înapoi
+  </button>
+
+
+  <ul>
+    <li *ngFor="let level of levels">
+      <ng-container *ngIf="editingLevelId === level.id; else viewMode">
+        <input type="text" [(ngModel)]="editedLevelName" placeholder="Nume" />
+        <input type="number" [(ngModel)]="editedLevelDifficulty" placeholder="Dificultate" />
+        <button (click)="saveEditedLevel()">Salvează</button>
+        <button (click)="cancelEdit()">Anulează</button>
+
+      </ng-container>
+      <ng-template #viewMode>
+        {{ level.name }}
+        <button (click)="editLevel(level)">Editare</button>
+        <button (click)="deleteLevel(level.id)">Ștergere</button>
+      </ng-template>
+    </li>
+  </ul>
+
+  <div class="add-level">
+    <input type="text" placeholder="Nume nivel nou" [(ngModel)]="levelName" />
+    <input type="number" placeholder="Dificultate (ex: 1, 2, 3...)" [(ngModel)]="difficulty" />
+    <button (click)="addLevel()">Adaugă</button>
+  </div>
+
+</div>
+
+

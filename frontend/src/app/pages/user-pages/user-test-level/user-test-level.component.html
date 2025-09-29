@@ -1,0 +1,45 @@
+<div class="container mt-4" *ngIf="questions.length > 0">
+  <h2>Test Nivel</h2>
+
+  <form (ngSubmit)="submitTest()" *ngIf="!submitted">
+    <div *ngFor="let q of questions; let i = index" class="mb-4">
+      <h5>{{ i + 1 }}. {{ q.question }}</h5>
+      <div *ngFor="let opt of q.options">
+        <label>
+          <input
+            type="radio"
+            [name]="'q' + i"
+            [value]="opt"
+            [(ngModel)]="userAnswers[i]"
+            required
+            [ngModelOptions]="{ standalone: true }"
+          />
+          {{ opt }}
+        </label>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="loading">
+      {{ loading ? 'Se trimite...' : 'Trimite testul' }}
+    </button>
+  </form>
+
+  <div *ngIf="submitted && result" class="mt-4">
+    <h4>{{ result.message }}</h4>
+    <p><strong>Rezultat:</strong> {{ result.correctAnswers }}/{{ result.totalQuestions }} corecte
+      ({{ result.scorePercentage | number:'1.1-1' }}%)</p>
+    <p><strong>Status:</strong> {{ result.passed ? 'Trecut' : 'Picat' }}</p>
+
+    <div class="mt-3">
+      <button class="btn btn-secondary me-2" (click)="restart()">Înapoi la Home</button>
+      <button class="btn btn-warning" (click)="retakeTest()" *ngIf="!result.passed">
+        Încearcă din nou
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4" *ngIf="questions.length === 0 && !loading">
+  <p>Testul nu conține întrebări pentru acest nivel.</p>
+  <button class="btn btn-secondary" (click)="restart()">Înapoi la Home</button>
+</div>

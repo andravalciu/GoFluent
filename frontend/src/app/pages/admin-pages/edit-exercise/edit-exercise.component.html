@@ -1,0 +1,15 @@
+<form (ngSubmit)="onSubmit()">
+  <!-- Câmpuri pentru întrebare și răspuns -->
+  <div class="mb-3">
+    <label>Întrebare</label>
+    <input [(ngModel)]="exercise.question" name="question" class="form-control" required />
+  </div>
+
+  <div class="mb-3">
+    <label>Răspuns</label>
+    <input [(ngModel)]="exercise.answer" name="answer" class="form-control" required />
+  </div>
+
+  <button type="submit" class="btn btn-success">Salvează</button>
+</form>
+

@@ -1,0 +1,49 @@
+.manage-levels {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.manage-levels h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.manage-levels ul {
+  list-style: none;
+  padding: 0;
+}
+
+.manage-levels li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  background: #f2f2f2;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.manage-levels .add-level {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.manage-levels input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.manage-levels button {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
