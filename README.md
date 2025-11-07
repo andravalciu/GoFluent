@@ -1,5 +1,16 @@
 # GoFluent
 
+## 🔧 Tech Stack
+
+![Java](https://img.shields.io/badge/Java-21-%23ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3.3-%236DB33F?style=for-the-badge&logo=springboot&logoColor=white)
+![Angular](https://img.shields.io/badge/Angular-16-%23DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.1-%233178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-20-%23339933?style=for-the-badge&logo=node.js&logoColor=white)
+![npm](https://img.shields.io/badge/npm-11-%23CB3837?style=for-the-badge&logo=npm&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-%234169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+
+
 A web application for foreign language learning, inspired by Duolingo, built with **Angular** and **Spring Boot**.  
 This project helps users study foreign languages through structured lessons, interactive quizzes, gamification, and progress tracking.
 
