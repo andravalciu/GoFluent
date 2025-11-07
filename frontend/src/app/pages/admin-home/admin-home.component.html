@@ -1,0 +1,131 @@
+<div class="admin-dashboard">
+  <!-- Header cu titlu și buton logout -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Panou Administrator</h2>
+    <button class="btn btn-outline-danger" (click)="logout()">Logout</button>
+  </div>
+
+  <!-- Selectarea limbii pentru administrare -->
+  <div *ngIf="!selectedLanguageId" class="language-selection-admin">
+    <h2>Selectează limba de administrat</h2>
+    <p>Alege limba pentru care vrei să gestionezi conținutul educațional:</p>
+
+    <div class="languages-admin-grid">
+      <div *ngFor="let language of availableLanguages" class="language-admin-card-container">
+        <div class="language-admin-card" (click)="selectLanguageForAdmin(language.id)">
+          <div class="language-flag">{{language.flagEmoji}}</div>
+          <h4>{{language.name}}</h4>
+          <p>Administrează {{language.name}}</p>
+        </div>
+        <!-- Buton de ștergere -->
+        <button class="delete-language-btn"
+                (click)="confirmDeleteLanguage(language)"
+                title="Șterge limba și tot conținutul">
+          🗑️
+        </button>
+      </div>
+
+      <div *ngIf="showDeleteConfirmation" class="modal-overlay" (click)="cancelDelete()">
+        <div class="modal-content delete-modal" (click)="$event.stopPropagation()">
+          <h3>Confirmare Ștergere</h3>
+          <div class="delete-warning">
+            <p><strong>ATENȚIE!</strong> Ești pe cale să ștergi limba:</p>
+            <div class="language-to-delete">
+              <span class="flag">{{languageToDelete?.flagEmoji}}</span>
+              <span class="name">{{languageToDelete?.name}}</span>
+            </div>
+            <div class="warning-details">
+              <p>Această acțiune va șterge <strong>DEFINITIV</strong>:</p>
+              <ul>
+                <li>✗ Toate nivelurile pentru {{languageToDelete?.name}}</li>
+                <li>✗ Toate lecțiile din această limbă</li>
+                <li>✗ Toate exercițiile asociate</li>
+                <li>✗ Progresul utilizatorilor pentru această limbă</li>
+              </ul>
+              <p class="final-warning">
+                <strong>Această acțiune NU poate fi anulată!</strong>
+              </p>
+            </div>
+          </div>
+          <div class="delete-actions">
+            <button type="button" class="btn btn-secondary me-2" (click)="cancelDelete()">
+              Anulează
+            </button>
+            <button type="button" class="btn btn-danger" (click)="deleteLanguageConfirmed()">
+              🗑️ Șterge definitiv
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card pentru adăugarea unei limbi noi -->
+      <div class="language-admin-card add-new" (click)="showAddLanguageForm = true">
+        <div class="add-icon">➕</div>
+        <h4>Adaugă limbă nouă</h4>
+        <p>Creează o limbă nouă în sistem</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard pentru limba selectată -->
+  <div *ngIf="selectedLanguageId" class="admin-management-dashboard">
+    <!-- Header cu limba selectată -->
+    <div class="selected-language-header">
+      <div class="current-language-admin">
+        <span class="flag">{{getSelectedLanguage()?.flagEmoji}}</span>
+        <span class="name">Administrezi: {{getSelectedLanguage()?.name}}</span>
+      </div>
+      <div class="language-actions">
+        <button class="btn btn-outline-secondary me-2" (click)="changeLanguage()">
+          🔄 Schimbă limba
+        </button>
+        <button class="btn btn-outline-primary" (click)="showAddLanguageForm = true">
+          ➕ Adaugă limbă nouă
+        </button>
+      </div>
+    </div>
+
+    <!-- Secțiuni administrare pentru limba selectată -->
+    <h3>Gestiuni pentru {{getSelectedLanguage()?.name}}</h3>
+    <div class="admin-sections">
+      <button [routerLink]="['/manage-levels']" [queryParams]="{languageId: selectedLanguageId}" class="admin-btn">
+        📊 Gestiune Nivele
+      </button>
+      <button [routerLink]="['/manage-content']" [queryParams]="{languageId: selectedLanguageId}" class="admin-btn">
+        📚 Gestiune Conținut
+      </button>
+      <button [routerLink]="['/manage-mcq']" [queryParams]="{languageId: selectedLanguageId}" class="admin-btn">
+        🧪 Gestiune Teste
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal pentru adăugarea unei limbi noi -->
+  <div *ngIf="showAddLanguageForm" class="modal-overlay" (click)="cancelAdd()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <h3>Adaugă Limbă Nouă</h3>
+      <form (ngSubmit)="addLanguage()">
+        <div class="form-group mb-3">
+          <label>Numele limbii:</label>
+          <input type="text" class="form-control" [(ngModel)]="newLanguage.name"
+                 name="name" placeholder="ex: English" required>
+        </div>
+        <div class="form-group mb-3">
+          <label>Cod limbă (2-3 litere):</label>
+          <input type="text" class="form-control" [(ngModel)]="newLanguage.code"
+                 name="code" placeholder="ex: en" required maxlength="3">
+        </div>
+        <div class="form-group mb-3">
+          <label>Emoji steag:</label>
+          <input type="text" class="form-control" [(ngModel)]="newLanguage.flagEmoji"
+                 name="flagEmoji" placeholder="ex: 🇬🇧" required>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary me-2">Salvează</button>
+          <button type="button" class="btn btn-secondary" (click)="cancelAdd()">Anulează</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

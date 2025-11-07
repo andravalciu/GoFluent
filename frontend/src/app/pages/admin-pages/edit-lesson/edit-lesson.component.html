@@ -1,0 +1,135 @@
+<div class="container mt-4">
+  <h2>Editare Lecție</h2>
+
+  <button routerLink="/manage-content" class="btn btn-outline-secondary me-2 mb-3">
+    <i class="bi bi-arrow-left"></i> Înapoi la Lista Lecțiilor
+  </button>
+
+  <!-- Language Selection Section (optional, if you want users to be able to change language) -->
+  <div class="language-selection mb-4 p-3 border rounded" *ngIf="availableLanguages.length > 1">
+    <h6>Limba Selectată</h6>
+    <select
+      class="form-select"
+      [(ngModel)]="selectedLanguageId"
+      (change)="onLanguageChange(selectedLanguageId)"
+      [disabled]="isLoading">
+      <option *ngFor="let language of availableLanguages" [value]="language.id">
+        {{language.name}} ({{language.code}})
+      </option>
+    </select>
+  </div>
+
+  <!-- Loading Indicator -->
+  <div *ngIf="isLoading" class="text-center mb-4">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p>Se încarcă datele...</p>
+  </div>
+
+  <!-- Edit Form -->
+  <div *ngIf="!isLoading">
+
+    <!-- Show error if no levels available -->
+    <div *ngIf="levels.length === 0" class="alert alert-warning mb-3">
+      <i class="bi bi-exclamation-triangle"></i>
+      Nu există nivele disponibile pentru această limbă. Te rugăm să creezi nivele înainte de a edita lecția.
+      <br>
+      <button class="btn btn-sm btn-primary mt-2" (click)="goBack()">
+        Înapoi la Administrare
+      </button>
+    </div>
+
+    <form (ngSubmit)="onUpdate()" #editForm="ngForm" *ngIf="levels.length > 0">
+
+      <!-- Lesson ID Info -->
+      <div class="mb-3">
+        <small class="text-muted">ID Lecție: {{lessonId}}</small>
+      </div>
+
+      <!-- Titlu -->
+      <div class="mb-3">
+        <label for="title" class="form-label">Titlu <span class="text-danger">*</span></label>
+        <input
+          type="text"
+          id="title"
+          class="form-control"
+          [(ngModel)]="lesson.title"
+          name="title"
+          required
+          placeholder="Introdu titlul lecției">
+        <div class="form-text">Titlul lecției trebuie să fie clar și descriptiv</div>
+      </div>
+
+      <!-- Descriere -->
+      <div class="mb-3">
+        <label for="description" class="form-label">Descriere <span class="text-danger">*</span></label>
+        <textarea
+          id="description"
+          class="form-control"
+          [(ngModel)]="lesson.description"
+          name="description"
+          rows="3"
+          required
+          placeholder="Introdu o descriere scurtă"></textarea>
+        <div class="form-text">O descriere scurtă a ceea ce va învăța studentul</div>
+      </div>
+
+      <!-- Conținut -->
+      <div class="mb-3">
+        <label for="content" class="form-label">Conținut</label>
+        <textarea
+          id="content"
+          class="form-control"
+          [(ngModel)]="lesson.content"
+          name="content"
+          rows="8"
+          placeholder="Introdu conținutul complet al lecției..."></textarea>
+        <div class="form-text">Conținutul complet al lecției</div>
+      </div>
+
+      <!-- Nivel -->
+      <div class="mb-3">
+        <label for="level" class="form-label">Nivel <span class="text-danger">*</span></label>
+        <select
+          id="level"
+          class="form-select"
+          [(ngModel)]="lesson.levelId"
+          name="levelId"
+          required>
+          <option value="">-- Selectează Nivelul --</option>
+          <option *ngFor="let level of levels" [value]="level.id">
+            {{ level.name }} - {{ level.description }}
+          </option>
+        </select>
+        <div class="form-text">Selectează nivelul de dificultate corespunzător</div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="d-flex gap-2">
+        <button
+          class="btn btn-success"
+          type="submit"
+          [disabled]="!editForm.form.valid || isLoading">
+          <i class="bi bi-check-circle"></i>
+          <span *ngIf="!isLoading">Salvează Modificările</span>
+          <span *ngIf="isLoading">Se salvează...</span>
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="goBack()"
+          [disabled]="isLoading">
+          <i class="bi bi-x-circle"></i>
+          Anulează
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Success/Error Messages could be added here if needed -->
+</div>
+
+
+

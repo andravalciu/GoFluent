@@ -1,0 +1,125 @@
+<!-- Loading state -->
+<div *ngIf="isLoading" class="loading-container">
+  <div class="spinner"></div>
+  <p>Se încarcă...</p>
+</div>
+
+<!-- ONBOARDING - Selectarea limbii pentru utilizatorii noi -->
+<div *ngIf="!isLoading && showLanguageSelection" class="onboarding-container">
+  <div class="welcome-header">
+    <h1>Bun venit, {{userName}}!</h1>
+    <p>Selectează limba pe care vrei să o înveți pentru a începe aventura ta!</p>
+  </div>
+
+  <div class="language-grid">
+    <div *ngFor="let language of availableLanguages"
+         class="language-card"
+         (click)="startLearningLanguage(language.id)">
+      <div class="language-flag">{{language.flagEmoji}}</div>
+      <h3>{{language.name}}</h3>
+      <p>Începe să înveți {{language.name}}</p>
+      <div class="start-button">Selectează</div>
+    </div>
+  </div>
+</div>
+
+<!-- ONBOARDING - Selectarea nivelului -->
+<div *ngIf="!isLoading && showLevelSelection" class="level-selection-container">
+  <div class="level-header">
+    <button class="btn-back" (click)="goBackToLanguageSelection()">← Înapoi</button>
+    <h2>Alege-ți nivelul pentru {{selectedLanguageName}}</h2>
+    <p>Selectează nivelul care se potrivește cel mai bine cunoștințelor tale actuale:</p>
+  </div>
+
+  <div class="levels-grid">
+    <div *ngFor="let level of availableLevels"
+         class="level-card"
+         (click)="selectLevel(level.id)">
+      <div class="level-difficulty">{{level.difficulty}}</div>
+      <h3>{{level.name}}</h3>
+      <p>{{level.description}}</p>
+      <div class="select-button">Selectează nivelul</div>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD pentru utilizatorii care au limba selectată -->
+<div *ngIf="!isLoading && !showLanguageSelection && !showLevelSelection" class="dashboard-container">
+  <div class="dashboard-header">
+    <!-- Selector de limbă și buton adăugare -->
+    <div class="language-selector" *ngIf="myLanguages.length > 0">
+      <select [(ngModel)]="activeLanguageId" (change)="switchLanguage()" class="language-select">
+        <option *ngFor="let lang of myLanguages" [value]="lang.languageId">
+          {{lang.flagEmoji}} {{lang.languageName}}
+        </option>
+      </select>
+      <button class="btn-add-language" (click)="openAddLanguageModal()">+ Adaugă limbă</button>
+    </div>
+
+    <button class="btn-logout" (click)="logout()">Ieșire</button>
+  </div>
+
+  <h2 class="welcome-title">Bine ai venit înapoi, {{userName}}!</h2>
+
+  <!-- Afișează limba activă -->
+  <div *ngIf="activeLanguageId" class="current-language">
+    <span>Studiezi acum: </span>
+    <span class="active-lang">
+      {{getCurrentLanguage()?.flagEmoji}}
+      {{getCurrentLanguage()?.languageName}}
+      <span class="level-info">- {{getCurrentLanguage()?.currentLevel}}</span>
+    </span>
+  </div>
+
+  <h4 class="section-title">Lecțiile tale</h4>
+
+  <div *ngIf="lessons.length > 0; else noLessons">
+    <div *ngFor="let lesson of lessons" class="lesson-item">
+      <div class="lesson-content">
+        <h5 class="lesson-title">{{ lesson.title }}</h5>
+        <p class="lesson-description">{{ lesson.description }}</p>
+        <span class="lesson-level">{{lesson.levelName}}</span>
+      </div>
+      <button class="btn-primary-simple" (click)="viewLesson(lesson.id)">
+        Începe lecția →
+      </button>
+    </div>
+  </div>
+
+  <ng-template #noLessons>
+    <div class="no-lessons">
+      <div *ngIf="myLanguages.length === 0">
+        Alege o limbă pentru a vedea lecțiile disponibile.
+      </div>
+      <div *ngIf="myLanguages.length > 0">
+        Nu ai lecții disponibile pentru limba selectată încă. <br>
+        Încearcă să adaugi o altă limbă sau să revii mai târziu!
+      </div>
+    </div>
+  </ng-template>
+
+  <div class="actions-section">
+    <div class="actions-row">
+      <button class="btn-primary-simple" (click)="goToProgress()">Vezi progresul</button>
+      <button class="btn-success-simple" (click)="goToTest()">Testare de nivel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal pentru adăugare limbă nouă -->
+<div *ngIf="showAddLanguage" class="modal-overlay" (click)="showAddLanguage = false">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h3>Alege o limbă nouă</h3>
+
+    <div class="language-grid">
+      <div *ngFor="let lang of availableLanguages"
+           class="language-card"
+           (click)="startLearningLanguage(lang.id)">
+        <span class="flag">{{lang.flagEmoji}}</span>
+        <span class="name">{{lang.name}}</span>
+      </div>
+    </div>
+
+    <button class="btn-close" (click)="showAddLanguage = false">Închide</button>
+  </div>
+</div>

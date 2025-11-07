@@ -1,0 +1,31 @@
+<div class="manage-content container mt-4">
+  <h2>Gestionare Conținut Educațional</h2>
+
+  <div class="d-flex mb-3">
+    <button routerLink="/admin-home" class="btn btn-outline-secondary me-2">
+      <i class="bi bi-arrow-left"></i> Înapoi
+    </button>
+
+    <button class="btn btn-primary" (click)="goToAddLesson()">Adaugă Lecție</button>
+  </div>
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+    <tr>
+      <th>Titlu</th>
+      <th>Nivel</th>
+      <th>Descriere</th>
+      <th>Acțiuni</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let lesson of lessons">
+      <td>{{ lesson.title }}</td>
+      <td>{{ lesson.levelName }}</td>
+      <td>{{ lesson.description }}</td>
+      <td>
+        <button class="btn btn-info" (click)="viewLesson(lesson.id)">Vizualizează</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

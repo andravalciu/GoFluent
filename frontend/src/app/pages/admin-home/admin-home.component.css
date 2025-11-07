@@ -1,0 +1,488 @@
+/* Container principal admin */
+.admin-dashboard {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.admin-dashboard h2 {
+  font-size: 28px;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.admin-dashboard h3 {
+  font-size: 22px;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.admin-dashboard p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+/* Header cu logout */
+.d-flex {
+  display: flex;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-outline-danger {
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+  background-color: transparent;
+}
+
+.btn-outline-danger:hover {
+  background-color: #e74c3c;
+  color: white;
+}
+
+/* Selectarea limbii pentru admin */
+.language-selection-admin {
+  margin-bottom: 40px;
+}
+
+.languages-admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.language-admin-card {
+  background: white;
+  padding: 30px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+}
+
+.language-admin-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-color: #3498db;
+}
+
+.language-admin-card.add-new {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+}
+
+.language-admin-card.add-new:hover {
+  background: linear-gradient(135deg, #2980b9, #1f5f8b);
+}
+
+.language-flag {
+  font-size: 48px;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.add-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.language-admin-card h4 {
+  font-size: 20px;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.language-admin-card.add-new h4 {
+  color: white;
+}
+
+.language-admin-card p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+.language-admin-card.add-new p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Dashboard pentru limba selectată */
+.admin-management-dashboard {
+  margin-top: 20px;
+}
+
+.selected-language-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.current-language-admin {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.current-language-admin .flag {
+  font-size: 32px;
+}
+
+.current-language-admin .name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.language-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-outline-secondary {
+  color: #6c757d;
+  border: 1px solid #6c757d;
+  background-color: transparent;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-outline-primary {
+  color: #3498db;
+  border: 1px solid #3498db;
+  background-color: transparent;
+}
+
+.btn-outline-primary:hover {
+  background-color: #3498db;
+  color: white;
+}
+
+.me-2 {
+  margin-right: 0.5rem;
+}
+
+/* Secțiuni administrare */
+.admin-sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.admin-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  background-color: #3498db;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  min-height: 80px;
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+}
+
+.admin-btn:hover {
+  background-color: #2980b9;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+  color: white;
+  text-decoration: none;
+}
+
+/* Modal pentru adăugarea limbii */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  text-align: left;
+}
+
+.modal-content h3 {
+  font-size: 24px;
+  color: #2c3e50;
+  margin-bottom: 25px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.1);
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+  padding: 10px 20px;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .admin-dashboard {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .selected-language-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .language-actions {
+    justify-content: center;
+  }
+
+  .languages-admin-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-sections {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-content {
+    margin: 20px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-dashboard h2 {
+    font-size: 24px;
+  }
+
+  .current-language-admin {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .current-language-admin .flag {
+    font-size: 24px;
+  }
+
+  .language-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .language-actions .btn {
+    width: 100%;
+  }
+}
+.language-admin-card-container {
+  position: relative;
+}
+
+/* Buton de ștergere */
+.delete-language-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(231, 76, 60, 0.9);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.delete-language-btn:hover {
+  background: #c0392b;
+  transform: scale(1.1);
+}
+
+/* Modal de ștergere */
+.delete-modal {
+  max-width: 600px;
+  text-align: center;
+}
+
+.warning-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.delete-warning {
+  text-align: left;
+  margin: 20px 0;
+}
+
+.language-to-delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+.language-to-delete .flag {
+  font-size: 32px;
+}
+
+.language-to-delete .name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.warning-details {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.warning-details ul {
+  text-align: left;
+  margin: 15px 0;
+}
+
+.warning-details li {
+  margin: 8px 0;
+  color: #d63031;
+  font-weight: 500;
+}
+
+.final-warning {
+  background: #ffe6e6;
+  padding: 15px;
+  border-radius: 6px;
+  color: #d63031;
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+.delete-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+  color: white;
+  padding: 12px 24px;
+  font-weight: 600;
+}
+
+.btn-danger:hover {
+  background-color: #c0392b;
+}

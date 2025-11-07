@@ -1,0 +1,647 @@
+/* Container principal pentru login/register */
+.auth-container {
+  max-width: 380px;
+  margin: 60px auto;
+  padding: 35px;
+  background: linear-gradient(145deg, #ffffff, #f8f9fa);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 6px 20px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+/* Responsive cu Bootstrap breakpoints */
+@media (max-width: 575.98px) { /* xs */
+  .auth-container {
+    margin: 20px 15px;
+    padding: 25px 20px;
+    max-width: none;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) { /* sm */
+  .auth-container {
+    margin: 40px 30px;
+    padding: 30px 25px;
+    max-width: 400px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) { /* md */
+  .auth-container {
+    margin: 50px auto;
+    padding: 32px;
+    max-width: 380px;
+  }
+}
+
+@media (min-width: 992px) { /* lg+ */
+  .auth-container {
+    margin: 60px auto;
+    padding: 35px;
+    max-width: 380px;
+  }
+}
+
+/* Stilizare pentru tab-uri */
+.tabs {
+  display: flex;
+  margin-bottom: 35px;
+  padding: 4px;
+  background-color: #f1f3f4;
+  border-radius: 12px;
+  position: relative;
+}
+
+/* Responsive tabs */
+@media (max-width: 575.98px) {
+  .tabs {
+    margin-bottom: 25px;
+    padding: 3px;
+    border-radius: 10px;
+  }
+}
+
+.tabs button {
+  flex: 1;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  background: transparent;
+  color: #6c757d;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive tab buttons */
+@media (max-width: 575.98px) {
+  .tabs button {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 6px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .tabs button {
+    padding: 7px 14px;
+    font-size: 12px;
+  }
+}
+
+.tabs button:hover {
+  color: #495057;
+  transform: translateY(-1px);
+}
+
+.tabs button.active {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+/* Stilizare pentru titluri */
+h2 {
+  font-size: 22px;
+  color: #2c3e50;
+  margin-bottom: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* Responsive titles */
+@media (max-width: 575.98px) {
+  h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    letter-spacing: -0.3px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  h2 {
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
+}
+
+/* Stilizare pentru form-uri */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Responsive form gap */
+@media (max-width: 575.98px) {
+  form {
+    gap: 15px;
+  }
+}
+
+/* Stilizare pentru input-uri */
+input[type="text"],
+input[type="password"] {
+  padding: 10px 14px;
+  font-size: 13px;
+  border: 1.5px solid #e9ecef;
+  border-radius: 10px;
+  background-color: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  font-weight: 500;
+}
+
+/* Responsive inputs */
+@media (max-width: 575.98px) {
+  input[type="text"],
+  input[type="password"] {
+    padding: 8px 12px;
+    font-size: 12px;
+    border-radius: 8px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  input[type="text"],
+  input[type="password"] {
+    padding: 9px 13px;
+    font-size: 12px;
+  }
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.08);
+  transform: translateY(-1px);
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+  color: #adb5bd;
+  font-weight: 400;
+}
+
+/* Stilizare pentru butoane de submit */
+button[type="submit"] {
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: 8px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+}
+
+/* Responsive submit buttons */
+@media (max-width: 575.98px) {
+  button[type="submit"] {
+    padding: 8px 16px;
+    font-size: 11px;
+    border-radius: 8px;
+    margin-top: 5px;
+    letter-spacing: 0.2px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  button[type="submit"] {
+    padding: 9px 18px;
+    font-size: 12px;
+    margin-top: 6px;
+  }
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(135deg, #2980b9, #1f5f8b);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+}
+
+button[type="submit"]:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(52, 152, 219, 0.2);
+}
+
+/* Responsive design compatibil cu Bootstrap */
+@media (max-width: 575.98px) { /* xs */
+  .auth-container {
+    margin: 20px 15px;
+    padding: 25px 20px;
+    max-width: none;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) { /* sm */
+  .auth-container {
+    margin: 40px 30px;
+    padding: 30px 25px;
+    max-width: 400px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) { /* md */
+  .auth-container {
+    margin: 50px auto;
+    padding: 32px;
+    max-width: 380px;
+  }
+}
+
+@media (min-width: 992px) { /* lg+ */
+  .auth-container {
+    margin: 60px auto;
+    padding: 35px;
+    max-width: 380px;
+  }
+}
+
+/* Animații subtile */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.auth-container > div {
+  animation: slideIn 0.4s ease-out;
+}
+
+/* Utilizare cu Bootstrap Grid (opțional) */
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px 0;
+}
+
+/* Loading State */
+.loading-container {
+  max-width: 500px;
+  margin: 100px auto;
+  padding: 40px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ecf0f1;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-container p {
+  font-size: 16px;
+  color: #555;
+  margin: 0;
+}
+
+/* ONBOARDING - Selectarea Limbii */
+.onboarding-container {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 40px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.welcome-header h1 {
+  font-size: 32px;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.welcome-header p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 40px;
+  line-height: 1.5;
+}
+
+.language-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.language-card {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  padding: 30px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.language-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+  background: linear-gradient(135deg, #2980b9, #34495e);
+}
+
+.language-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.language-card:hover::before {
+  left: 100%;
+}
+
+.language-flag {
+  font-size: 48px;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.language-card h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.language-card p {
+  font-size: 14px;
+  opacity: 0.9;
+  margin-bottom: 20px;
+}
+
+.start-button {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.language-card:hover .start-button {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* ONBOARDING - Selectarea Nivelului */
+.level-selection-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 40px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.level-header {
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.btn-back {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #95a5a6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-back:hover {
+  background: #7f8c8d;
+}
+
+.level-header h2 {
+  font-size: 28px;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.level-header p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.levels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.level-card {
+  background: white;
+  padding: 30px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.level-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-color: #3498db;
+}
+
+.level-difficulty {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0 auto 20px;
+}
+
+.level-card:nth-child(1) .level-difficulty {
+  background: linear-gradient(135deg, #27ae60, #229954);
+}
+
+.level-card:nth-child(2) .level-difficulty {
+  background: linear-gradient(135deg, #f39c12, #d68910);
+}
+
+.level-card:nth-child(3) .level-difficulty {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.level-card h3 {
+  font-size: 22px;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.level-card p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+.select-button {
+  background: #3498db;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.level-card:hover .select-button {
+  background: #2980b9;
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .onboarding-container,
+  .level-selection-container {
+    margin: 20px;
+    padding: 30px 20px;
+  }
+
+  .welcome-header h1 {
+    font-size: 26px;
+  }
+
+  .level-header h2 {
+    font-size: 24px;
+  }
+
+  .language-grid,
+  .levels-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-back {
+    position: static;
+    margin-bottom: 20px;
+  }
+
+  .level-header {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .language-card,
+  .level-card {
+    padding: 20px 15px;
+  }
+
+  .language-flag {
+    font-size: 36px;
+  }
+
+  .language-card h3 {
+    font-size: 20px;
+  }
+
+  .level-card h3 {
+    font-size: 18px;
+  }
+}
+
+/* Animații pentru tranziții fluide */
+.onboarding-container,
+.level-selection-container {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efecte speciale pentru hover */
+.language-card,
+.level-card {
+  position: relative;
+}
+
+.language-card::after,
+.level-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.language-card:hover::after {
+  opacity: 1;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.level-card:hover::after {
+  opacity: 1;
+  box-shadow: inset 0 0 20px rgba(52, 152, 219, 0.1);
+}

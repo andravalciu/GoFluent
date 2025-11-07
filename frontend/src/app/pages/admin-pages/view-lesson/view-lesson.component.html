@@ -1,0 +1,44 @@
+<div *ngIf="lesson" class="lesson-view">
+  <button routerLink="/admin-home" class="btn btn-outline-secondary me-2">
+    <i class="bi bi-arrow-left"></i> Înapoi
+  </button>
+  <h2>{{ lesson.title }}</h2>
+  <p><strong>Nivel:</strong> {{ lesson.levelName}}</p>
+  <p><strong>Descriere:</strong> {{ lesson.description }}</p>
+  <p><strong>Conținut:</strong> {{ lesson.content }}</p>
+
+  <div class="lesson-actions">
+    <button (click)="editLesson()">Modifică Lecția</button>
+    <button (click)="deleteLesson()">Șterge Lecția</button>
+  </div>
+
+  <hr />
+
+  <h3>Exerciții Asociate</h3>
+
+  <table class="table table-bordered table-striped mt-3" *ngIf="exercises.length > 0">
+    <thead class="table-dark">
+    <tr>
+      <th>Întrebare</th>
+      <th>Răspuns</th>
+      <th>Acțiuni</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let ex of exercises">
+      <td>{{ ex.question }}</td>
+      <td>{{ ex.answer }}</td>
+      <td>
+        <button class="btn btn-sm btn-outline-primary" (click)="editExercise(ex.id)">Modifică</button>
+        <button class="btn btn-sm btn-outline-danger" (click)="deleteExercise(ex.id)">Șterge</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="exercises.length === 0">Niciun exercițiu asociat.</p>
+
+  <button   [routerLink]="['/add-exercise']"
+            [queryParams]="{ lessonId: lesson?.id }">Adaugă Exercițiu</button>
+
+</div>

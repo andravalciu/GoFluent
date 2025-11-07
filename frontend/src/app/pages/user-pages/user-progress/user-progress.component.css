@@ -1,0 +1,208 @@
+/* Container principal */
+.progress-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(52, 152, 219, 0.1);
+}
+
+/* Buton înapoi */
+.btn-back {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 20px;
+}
+
+.btn-back:hover {
+  background: #5a6268;
+  transform: translateY(-1px);
+}
+
+/* Titlul paginii */
+.progress-container h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Tabelul */
+.progress-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e9ecef;
+}
+
+.progress-table th {
+  background: #f8f9fa;
+  padding: 15px 20px;
+  text-align: left;
+  font-weight: 600;
+  color: #2c3e50;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.progress-table td {
+  padding: 15px 20px;
+  border-bottom: 1px solid #f1f3f4;
+  vertical-align: middle;
+}
+
+.progress-table tbody tr:hover {
+  background: #f8f9fa;
+}
+
+.progress-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Stiluri pentru celule */
+.lesson-title {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.exercise-count {
+  font-weight: 500;
+  color: #495057;
+  text-align: center;
+}
+
+/* Bara de progres */
+.progress-bar-container {
+  background: #e9ecef;
+  border-radius: 10px;
+  height: 20px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  background: #27ae60;
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+
+.progress-status {
+  font-size: 13px;
+  font-weight: 500;
+  color: #495057;
+  margin: 0;
+  text-align: center;
+}
+
+/* Empty state */
+.no-progress {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6c757d;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 2px dashed #dee2e6;
+}
+
+.no-progress p {
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .progress-container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .progress-container h2 {
+    font-size: 1.6rem;
+  }
+
+  .progress-table th,
+  .progress-table td {
+    padding: 12px 15px;
+  }
+
+  .btn-back {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .progress-container {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .progress-table,
+  .progress-table thead,
+  .progress-table tbody,
+  .progress-table th,
+  .progress-table td,
+  .progress-table tr {
+    display: block;
+  }
+
+  .progress-table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .progress-table tr {
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+  }
+
+  .progress-table td {
+    border: none;
+    padding: 8px 0;
+    position: relative;
+    padding-left: 100px;
+  }
+
+  .progress-table td:before {
+    position: absolute;
+    left: 0;
+    width: 90px;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .lesson-title:before {
+    content: "Lecție:";
+  }
+
+  .exercise-count:before {
+    content: "Exerciții:";
+  }
+
+  .progress-cell:before {
+    content: "Progres:";
+  }
+
+  .progress-bar-container {
+    width: 100%;
+  }
+}
+
+/* Focus pentru accesibilitate */
+.btn-back:focus {
+  outline: 2px solid #3498db;
+  outline-offset: 2px;
+}
