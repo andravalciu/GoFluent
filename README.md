@@ -1,6 +1,6 @@
 # GoFluent
 
-## 🔧 Tech Stack
+## Tech Stack
 
 ![Java](https://img.shields.io/badge/Java-21-%23ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3.3-%236DB33F?style=for-the-badge&logo=springboot&logoColor=white)
@@ -29,13 +29,13 @@ This project helps users study foreign languages through structured lessons, int
 
 ---
 
-## 🏛️ Architecture
+## Architecture
 
 **Angular Frontend → REST API → Spring Boot → PostgreSQL**
 
 ---
 
-## 🛠️ Technologies & Versions
+## Technologies & Versions
 
 ### **Frontend (Angular)**
 
@@ -60,7 +60,7 @@ This project helps users study foreign languages through structured lessons, int
 
 ---
 
-## 📸 Screenshots
+## Screenshots
 
 ### 🔵 New User Flow
 
@@ -82,12 +82,12 @@ This project helps users study foreign languages through structured lessons, int
 
 ---
 
-### 🔧 Admin Panel
+### Admin Panel
 <img src="assets/screenshots/admin-panel.png" width="700"/>
 
 ---
 
-## 📘 Class Diagram (Main Entities)
+## Class Diagram (Main Entities)
 <img src="assets/diagrams/class-diagram.png" width="700"/>
 
 ---
