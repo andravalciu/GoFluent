@@ -16,7 +16,7 @@ This project helps users study foreign languages through structured lessons, int
 
 ---
 
-## ✅ Main Features
+## Main Features
 
 - ✅ User authentication and registration  
 - ✅ **New user onboarding** — first-time users must choose a learning language  
@@ -62,7 +62,7 @@ This project helps users study foreign languages through structured lessons, int
 
 ## Screenshots
 
-### 🔵 New User Flow
+### New User Flow
 
 #### 1. Register Page  
 <img src="assets/screenshots/register-page.png" width="700"/>
@@ -75,7 +75,7 @@ This project helps users study foreign languages through structured lessons, int
 
 ---
 
-### 🟢 Existing User Flow
+### Existing User Flow
 
 #### Existing User Homepage  
 <img src="assets/screenshots/homepage-existing-user.png" width="700"/>
